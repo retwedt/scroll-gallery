@@ -1,0 +1,221 @@
+/* theater.css - a lightbox clone */
+
+/* Modal Styles */
+.modal-wrap {
+	position: fixed;
+  top: 0;
+  bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(40,40,40,0.5);
+  color: white;
+  z-index: 100;
+}
+.modal {
+	/* center modal box on screen
+		 from https://css-tricks.com/centering-percentage-widthheight-elements/ */
+	position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 24px 8px 24px;
+  background-color: rgba(60,60,60,0.96);
+  /* rounded corners */
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  /* shadows */
+  -webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5);
+}
+#modal-close, #modal-right, #modal-left {
+  opacity: 0.16;
+  position: absolute;
+  /* disable user select */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+}
+#modal-close {
+  width:12px;
+  height:12px;
+  background-image: url("./img/close.png");
+  top: 10px;
+  right: 10px;
+}
+#modal-right {
+  background-image: url("./img/right.png");
+  width:18px;
+  height:132px;
+  top: calc(50% - 66px);
+  right: 6px;
+}
+#modal-left {
+  background-image: url("./img/left.png");
+  width:18px;
+  height:132px;
+  top: calc(50% - 66px);
+  left: 0px;
+}
+#modal-close:hover, #modal-right:hover, #modal-left:hover {
+  cursor: pointer;
+  opacity: 0.4;
+}
+#loading {
+  position: absolute;
+  opacity: 0.24;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* modal content */
+.modal-content {
+  margin: 12px auto;
+  text-align: center;
+}
+.modal-content iframe {
+  width:560;
+  height:315;
+  /* shadows */
+  -webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.25);
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.25);
+  /* disable user select */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+}
+.modal-content img {
+  /* shadows */
+  -webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.25);
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.25);
+  /* disable user select */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+}
+.modal h1 {
+  width: 96%;
+  height: 20px;
+  margin: 2px auto;
+  padding: 5px;
+  text-align: left;
+  font-size: 16px;
+}
+.modal-description {
+  width: 96%;
+  height: 36px;
+  margin: 6px auto;
+  padding: 4px;
+  font-size: 12px;
+  overflow-y: scroll;
+}
+/* Custom CSS Scrollbar applied to any div inside of .modal-description
+   from https://css-tricks.com/custom-scrollbars-in-webkit/ */
+div.modal *::-webkit-scrollbar {
+  width: 0.28em;
+}
+div.modal *::-webkit-scrollbar-thumb {
+  background: #5F6367;
+}
+div.modal *::-webkit-scrollbar-track {
+  background: #919496;
+}
+/* progress bar for bottom of modal box */
+.timeline-wrap {
+  height: 24px;
+  margin: 12px auto 4px auto;
+}
+.dot-big, .dot-small {
+  width: 16px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: top;
+}
+/* default styling for the timeline dots */
+.dot {
+  background-color: #fff;
+  opacity: 0.16;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  /* shadows */
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
+}
+/* specific sizes for big and small dots
+   big dots are timeline markers, small dots are separators */
+.dot-big .dot {
+  margin: 2px auto;
+  width: 10px;
+  height: 10px;
+}
+.dot-big .dot:hover {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  margin: auto;
+  background-color: #fff;
+  opacity: 0.4;
+}
+.dot-small .dot {
+  margin: 5px auto;
+  width: 4px;
+  height: 4px;
+}
+#highlight {
+  margin:1px auto;
+  width: 12px;
+  height: 12px;
+  opacity: 0.24;
+}
+#highlight:hover {
+  opacity: 0.4;
+}
+
+
+/* classes to fade in and out elements */
+.bg-inactive {
+  visibility:hidden;
+  opacity:0;
+  /* transition */
+  -webkit-transition: all 0.5s ease-out 0.15s;
+  -moz-transition: all 0.5s ease-out 0.15s;
+  -o-transition: all 0.5s ease-out 0.15s;
+  transition: all 0.5s ease-out 0.15s;
+}
+.bg-active {
+  visibility:visible;
+  opacity:1;
+  /* transition */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.inactive {
+  visibility:hidden;
+  opacity:0;
+  /* transition */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.active {
+  visibility:visible;
+  opacity:1;
+  /* transition */
+  -webkit-transition: all 0.5s ease-out 0.15s;
+  -moz-transition: all 0.5s ease-out 0.15s;
+  -o-transition: all 0.5s ease-out 0.15s;
+  transition: all 0.5s ease-out 0.15s;
+}

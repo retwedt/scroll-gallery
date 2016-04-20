@@ -1,0 +1,123 @@
+/* schedules.css */
+
+
+/* Default settings */
+* {
+  box-sizing: border-box;
+}
+html, body {
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+#wrap {
+  width: 100%;
+  min-height: calc(100% - 276px); 
+  margin-top: 276px;
+  margin-bottom: 60px;
+  background-color: white;
+}
+.blank-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 276px;
+  text-align: center;
+  z-index: -1;
+  overflow: hidden;
+  background-color: #000;
+}
+.blank-header h1 {
+  color: white;
+  font-size: 60px;
+  margin-top: 96px;
+  /* text shadow */
+  -webkit-text-shadow: 2px 2px 2px #313235;
+  -moz-text-shadow: 2px 2px 2px #313235;
+  text-shadow: 2px 2px 2px #313235;
+}
+.blank-header img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);*/
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+.txt-section {
+  padding: 10px;
+}
+.table-section h2 {
+  padding-left: 10px;
+}
+
+/* classes to desaturate/saturate header */
+.desaturate{
+/* -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);*/
+  opacity: 0.0; /* for black and white images */
+  background-color: #000;
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.saturate{
+/* -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+  background-color: white;*/
+  opacity: 1.0; /* for black and white images */
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+
+
+/* Table styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 7px 10px 10px 10px;
+  width: 12%;
+  text-align: center;
+}
+th {
+  text-transform: uppercase;
+  border-bottom: 2px solid #111;
+  border-top: 1px solid #999;
+}
+td {
+  height: 50px;
+  border: 1px solid #D0D5DB;
+}
+td.schedule-title {
+  width: 16%;
+  font-size: 1.2em;
+  font-style: italic;
+  font-weight: 600;
+  border: 1px solid white;
+  border-bottom: 1px solid #D0D5DB;
+  border-right: 1px solid #D0D5DB;
+}
+td.movie {
+  background-color: #F6F7F2;
+}
+td.show {
+  background-color: #EFEFE9;
+}
+td.right {
+  border-right: 1px solid white;
+}
+td.show:hover, td.movie:hover {
+  cursor: pointer;
+  background-color: #BFE2E7;
+}

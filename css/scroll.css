@@ -1,0 +1,287 @@
+/* show.css */
+
+* {
+  box-sizing: border-box;
+}
+html, body {
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+#wrap {
+  width: 100%;
+  min-height: calc(100% - 276px); 
+  margin-top: 276px;
+  margin-bottom: 60px;
+	background-color: white;
+}
+.show-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 276px;
+  text-align: center;
+  z-index: -1;
+  overflow: hidden;
+  background-color: #000;
+}
+.show-header h1 {
+  color: white;
+  font-size: 60px;
+  margin-top: 96px;
+  /* text shadow */
+  -webkit-text-shadow: 2px 2px 2px #313235;
+  -moz-text-shadow: 2px 2px 2px #313235;
+  text-shadow: 2px 2px 2px #313235;
+}
+.show-header img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);*/
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+.show-section {
+  width: 100%;
+	z-index: 1;
+  overflow-y: hidden;
+}
+
+
+/* classes to desaturate/saturate header */
+.desaturate{
+/* -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);*/
+  opacity: 0.0; /* for black and white images */
+  background-color: #000;
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.saturate{
+/* -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+  background-color: white;*/
+  opacity: 1.0; /* for black and white images */
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+
+/* Scroll Gallery Structure */
+.row {
+  width: 100%;
+  background-color: white;
+  position: relative;
+  margin: 8px auto;
+}
+.row-title-wrap {
+  width: 48px;
+  height: 148px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  background-color: #ababab;
+}
+.row-title {
+  position: absolute;
+  bottom: 72px;
+  left: -48px;
+  width: 140px;
+  font-size: 24px;
+/*  color: white;*/
+  /* disable user select */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+  /* rotate 90 degrees */
+  -ms-transform: rotate(270deg); /* IE 9 */
+  -webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
+  transform: rotate(270deg);
+}
+.row-scroll-wrap {
+  width: calc(100% - 52px);
+  height: 148px;
+  display: inline-block;
+  vertical-align: top;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+/* Custom CSS Scrollbar applied to any div inside of .row
+   from https://css-tricks.com/custom-scrollbars-in-webkit/ */
+div.row *::-webkit-scrollbar {
+  height: 4px;
+}
+div.row *::-webkit-scrollbar-thumb {
+  background: #838383;
+}
+div.row *::-webkit-scrollbar-track {
+  background: #ababab;
+}
+/* left and right arrows */
+.row-left, .row-right {
+  position: absolute;
+  height: calc(100% - 6px);
+  width: 24px;
+  opacity: 0.45;
+  padding-top: 64px;
+  text-align: center;
+  color: black;
+  background-color: #ababab;
+  z-index: 20;
+  overflow: hidden;
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  /* disable user select */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+}
+.row-left {
+  left: 50px;
+}
+.row-right {
+  right: 4px;
+}
+.row-left:hover, .row-right:hover {
+  cursor: pointer;
+  background-color: #D1D1D1;
+  opacity: 0.75;
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+/* styles each cell in the scroll gallery */
+.cell {
+  width: 250px;
+  height: 142px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0px 2px;
+  text-align: center;
+  border: 3px solid #ababab;
+  position: relative;
+  overflow: hidden;
+  opacity: 1.0;
+  /* disable user select */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+
+/* add hide/show descriptions to cells */
+.cell .cell-btn {
+  position: absolute;
+  bottom: 4px;
+  right: 10px;
+  opacity: 1.0;
+  z-index: 12;
+  color: #292727;
+  font-weight: bold;
+  /* text shadow */
+  -webkit-text-shadow: 1px 1px 1px #BABBBC;
+  -moz-text-shadow: 1px 1px 1px #BABBBC;
+  text-shadow: 1px 1px 1px #BABBBC;
+  /* disable user select */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.cell p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 4px);
+  transform: translate(0%, 100%);
+  margin: 2px;
+  z-index: 10;
+   /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+/* use animations and classes to rotate the description button when active */
+.b-on {
+  color: #4B4B52;
+  animation: roll-1 0.5s ease-out;
+  transform: rotate(180deg);
+}
+.b-off {
+  animation: roll-2 0.5s ease-out;
+  transform: rotate(0deg);
+}
+@keyframes roll-1 {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes roll-2 {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.cell img {
+  width: 100%;
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.cell img:hover {
+  cursor: pointer;
+  background-color: #D6D8E2;
+  opacity: 0.4;
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.cell .cell-btn:hover {
+  cursor: pointer;
+  color: #4A4949;
+}
+.cell .cell-btn:hover ~ .theater>img {
+  background-color: #D6D8E2;
+  opacity: 0.4;
+}
+.dim {
+  opacity: 0.4;
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
