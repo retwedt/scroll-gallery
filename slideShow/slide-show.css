@@ -1,76 +1,73 @@
 /* Slide-Show - an Image Carousel clone */
-.test-wrap {
-  width: 80%;
-  height: auto;
-/*  height: 400px;*/
-  margin: auto;
-}
+/* Default Settings */
 .slide-show {
   width: 100%;
   height: 100%;
   position: relative;
   background-color: #808080;
   overflow: hidden;
-/*  border: 2px solid red;*/
 }
-#slide-show-right, #slide-show-left {
-  opacity: 0.16;
+
+.slide-show .slide-show-btn, .slide-show .slide-show-right, .slide-show .slide-show-left {
   position: absolute;
-  /* disable user select */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer */
-  -webkit-user-select: none; /* Chrome, Safari, and Opera */
-  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+  top: -webkit-calc(50% - 32px);
+  top: calc(50% - 32px);
+  width: 28px;
+  height: 64px;
+  opacity: 0.16;
+  z-index: 10;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
-#slide-show-right {
+
+.slide-show .slide-show-right {
   background-image: url("./img/right.png");
-  width:28px;
-  height:64px;
-  top: calc(50% - 32px);
   right: 19px;
-  z-index: 10;
 }
-#slide-show-left {
+
+.slide-show .slide-show-left {
   background-image: url("./img/left.png");
-  width:28px;
-  height:64px;
-  top: calc(50% - 32px);
   left: 12px;
-  z-index: 10;
 }
-#slide-show-right:hover, #slide-show-left:hover {
+
+.slide-show .slide-show-right:hover, .slide-show .slide-show-left:hover {
   cursor: pointer;
   opacity: 0.4;
 }
 
-/* slide-show content */
-.img-wrap {
+.slide-show .img-wrap {
   width: 100%;
-/*  height: auto;*/
   position: relative;
   margin: auto;
   overflow: hidden;
   text-align: center;
-/*  border: 1px solid green;*/
   z-index: 1;
-  /* disable user select */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer */
-  -webkit-user-select: none; /* Chrome, Safari, and Opera */
-  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
-.img-wrap > img {
+
+.slide-show .img-wrap img {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
-/*  width: 100%;*/
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+       -o-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
-.slide-show > p, .slide-show > a {
+
+.slide-show .img-wrap p, .slide-show .img-wrap a {
   position: absolute;
-  bottom: 6%;
+  bottom: 4%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+       -o-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   text-align: center;
   font-size: 16px;
   min-width: 20px;
@@ -82,92 +79,83 @@
   z-index: 10;
   opacity: 0.90;
   text-decoration: none;
-  /* border-raduis */
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
   border-radius: 50px;
-  /* shadows */
-  -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
-  -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
-  box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
+  -moz-o-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
 }
-/* progress bar for bottom of slide-show box */
-.timeline-wrap {
+
+.slide-show .timeline-wrap {
   position: absolute;
   bottom: 0%;
   left: 50%;
-  transform: translate(-50%, -20%);
+  -webkit-transform: translate(-50%, -20%);
+      -ms-transform: translate(-50%, -20%);
+       -o-transform: translate(-50%, -20%);
+          transform: translate(-50%, -20%);
   height: 24px;
   margin: 6px auto;
   z-index: 10;
 }
-.dot-big, .dot-small {
-  width: 16px;
-  height: 14px;
+
+.slide-show .timeline-wrap .dot, .slide-show .timeline-wrap .dot-big, .slide-show .timeline-wrap .dot-small {
   display: inline-block;
   vertical-align: top;
-}
-/* default styling for the timeline dots */
-.dot {
   background-color: #fff;
-  opacity: 0.42;
-  /* border-raduis */
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
+  opacity: 0.4;
   border-radius: 50px;
-  /* shadows */
-  -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
-  -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
-  box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
+  -moz-o-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
 }
-/* specific sizes for big and small dots
-   big dots are timeline markers, small dots are separators */
-.dot-big .dot {
-  margin: 2px auto;
+
+.slide-show .timeline-wrap .dot-big {
   width: 10px;
   height: 10px;
+  margin: 5px;
 }
-.dot-big .dot:hover {
+
+.slide-show .timeline-wrap .dot-big:hover {
   cursor: pointer;
   width: 14px;
   height: 14px;
-  margin: auto;
-  background-color: #fff;
-  opacity: 0.64;
+  margin: 3px;
+  opacity: 0.65;
 }
-.dot-small .dot {
-  margin: 5px auto;
+
+.slide-show .timeline-wrap .dot-small {
   width: 4px;
   height: 4px;
-}
-#highlight {
-  margin:1px auto;
-  width: 12px;
-  height: 12px;
-  opacity: 0.24;
-/*  border: 2px solid #B6B9BC;*/
-}
-#highlight:hover {
-  opacity: 0.4;
+  margin: 8px;
 }
 
+.slide-show .timeline-wrap #highlight {
+  width: 14px;
+  height: 14px;
+  margin: 3px;
+  opacity: 0.6;
+}
+
+.slide-show .timeline-wrap #highlight:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
 
 /* classes to fade in and out elements */
-.hide {
-  visibility:hidden;
-  opacity:0;
-  /* transition */
+.img-wrap-hide {
+  visibility: hidden;
+  opacity: 0;
   -webkit-transition: visibility 0.5s ease-out, opacity 0.5s ease-out;
-  -moz-transition: visibility 0.5s ease-out, opacity 0.5s ease-out;
   -o-transition: visibility 0.5s ease-out, opacity 0.5s ease-out;
   transition: visibility 0.5s ease-out, opacity 0.5s ease-out;
 }
-.show {
-  visibility:visible;
-  opacity:1;
-  /* transition */
+
+.img-wrap-show {
+  visibility: visible;
+  opacity: 1;
   -webkit-transition: visibility 0.5s ease-out, opacity 0.5s ease-out;
-  -moz-transition: visibility 0.5s ease-out, opacity 0.5s ease-out;
   -o-transition: visibility 0.5s ease-out, opacity 0.5s ease-out;
   transition: visibility 0.5s ease-out, opacity 0.5s ease-out;
 }
