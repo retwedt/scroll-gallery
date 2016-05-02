@@ -30,6 +30,8 @@ html, body {
   z-index: -1;
   overflow: hidden;
   background-color: #000;
+  background-image: url("../img/scroll/header.jpg");
+  background-size: cover;
 }
 .blank-header h1 {
   color: white;
@@ -40,21 +42,20 @@ html, body {
   -moz-text-shadow: 2px 2px 2px #313235;
   text-shadow: 2px 2px 2px #313235;
 }
-.blank-header img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);*/
-  width: 100%;
-  height: auto;
-  z-index: -1;
-}
 .txt-section {
   padding: 10px;
+}
+.table-section {
+  width: 100%;
 }
 .table-section h2 {
   padding-left: 10px;
 }
+.table-section table {
+  width: 96%;
+  margin: auto;
+}
+
 
 /* classes to desaturate/saturate header */
 .desaturate{
@@ -121,3 +122,4 @@ td.show:hover, td.movie:hover {
   cursor: pointer;
   background-color: #BFE2E7;
 }
+
