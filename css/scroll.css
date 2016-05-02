@@ -18,7 +18,7 @@ html, body {
   margin-bottom: 60px;
 	background-color: white;
 }
-.show-header {
+.scroll-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -28,8 +28,10 @@ html, body {
   z-index: -1;
   overflow: hidden;
   background-color: #000;
+  background-image: url("../img/scroll/header.jpg");
+  background-size: cover;
 }
-.show-header h1 {
+.scroll-header h1 {
   color: white;
   font-size: 60px;
   margin-top: 96px;
@@ -38,16 +40,7 @@ html, body {
   -moz-text-shadow: 2px 2px 2px #313235;
   text-shadow: 2px 2px 2px #313235;
 }
-.show-header img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);*/
-  width: 100%;
-  height: auto;
-  z-index: -1;
-}
-.show-section {
+.scroll-section {
   width: 100%;
 	z-index: 1;
   overflow-y: hidden;
@@ -187,16 +180,14 @@ div.row *::-webkit-scrollbar-track {
   -moz-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
-
-
-/* add hide/show descriptions to cells */
+/* button to show/hide descriptions in cells */
 .cell .cell-btn {
   position: absolute;
   bottom: 4px;
   right: 10px;
   opacity: 1.0;
   z-index: 12;
-  color: #292727;
+  color: #484545;
   font-weight: bold;
   /* text shadow */
   -webkit-text-shadow: 1px 1px 1px #BABBBC;
@@ -208,19 +199,6 @@ div.row *::-webkit-scrollbar-track {
   -webkit-user-select: none; /* Chrome, Safari, and Opera */
   -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
   /* transitions */
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  transition: all 0.5s ease-out;
-}
-.cell p {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: calc(100% - 4px);
-  transform: translate(0%, 100%);
-  margin: 2px;
-  z-index: 10;
-   /* transitions */
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
@@ -251,37 +229,73 @@ div.row *::-webkit-scrollbar-track {
     transform: rotate(360deg);
   }
 }
-
-
-
-.cell img {
+/* background image for cell */
+.cell .theater {
   width: 100%;
   /* transitions */
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
-.cell img:hover {
-  cursor: pointer;
-  background-color: #D6D8E2;
-  opacity: 0.4;
-  /* transitions */
+/* description in each cell */
+.cell p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 4px);
+  transform: translate(0%, 100%);
+  margin: 2px;
+  z-index: 10;
+   /* transitions */
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
-.cell .cell-btn:hover {
-  cursor: pointer;
-  color: #4A4949;
-}
-.cell .cell-btn:hover ~ .theater>img {
-  background-color: #D6D8E2;
-  opacity: 0.4;
-}
+/* class for dimming the background image when the description is active */
 .dim {
   opacity: 0.4;
   /* transitions */
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
+}
+.un-dim {
+  opacity: 1.0;
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+/*.cell .cell-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: auto;
+  opacity: 0.2;
+  z-index: 8;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}*/
+.cell:hover {
+  cursor: pointer;
+/*  background-color: #D6D8E2;*/
+}
+.cell:hover .theater {
+  opacity: 0.4;
+  /* transitions */
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+/*.cell:hover .cell-play{
+  opacity: 0.6;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}*/
+.cell .cell-btn:hover {
+  color: #7F7F7F;
 }
