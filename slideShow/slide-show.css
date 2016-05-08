@@ -1,4 +1,12 @@
 /* Slide-Show - an Image Carousel clone */
+/*	Instructions:
+			You can customize the look of your lightbox using three variables:
+			- $scroller-bg-color describes the background color of the Slide-Show, behind the images.
+			- $title-bg-color describes background color of the description text in the Slide-Show.
+			- $btn-prefix can be used to allow custom buttons. For example:
+					'$btn-prefix: "red";'
+				This will allow you to use custom buttons called 'red-left.png', 'red-right.png', 'red-play.png', 'red-pause.png', 'red-reverse.png'.
+*/
 /* Default Settings */
 .slide-show {
   width: 100%;
