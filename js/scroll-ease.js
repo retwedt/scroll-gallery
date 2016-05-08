@@ -1,7 +1,6 @@
 //main.js
 
 
-
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
@@ -32,12 +31,9 @@
 }());
 
 
-
 // get dom elements
 var rows = document.querySelectorAll(".row");
 var cells = document.querySelectorAll(".cell");
-
-
 
 
 // setup row elements
@@ -85,89 +81,87 @@ for (var j=0; j<cells.length; j++) {
 }
 
 
-
-
 // function to animate scrolling inside of the horizontal rows
 // https://stackoverflow.com/questions/21474678/scrolltop-animation-without-jquery
 function scrollTo() {
 	var row = this.parentElement.querySelector(".row-scroll-wrap");
   var maxScroll = row.scrollWidth - row.clientWidth;
 	var dir = this.className.slice(4);
-	var scrollPos;
-  var scrollAmount = 0;
+
+  var scrollAmount = 0; // amount to scroll the element, equal to 'c' in the easing equation
+  var dirMod = 0; // modify the scrollPos based on the direction of the scroll
+	var scrollPos = 0; // calculated position of element at any given time
 
 
  // each cell is 254px wide, each button click moves 2 cells
 	if (dir === "right") {
-		scrollPos = row.scrollLeft + (254 * 2);
-		scrollAmount = 12;
+		scrollAmount = (254 * 2);
+		dirMod = 1;
   } else if (dir === "left") {
-		scrollPos = row.scrollLeft - (254 * 2);
-		scrollAmount = -12;
+		scrollAmount = (254 * 2);
+		dirMod = -1;
   } else if (dir === "scroll-wrap") { // if dir=='scroll-wrap', the element was moved using the scrollbar instead of the buttons
 	  // figure out which cell the current scroll position is closest too
-		var mod = this.scrollLeft % 254;
-		var num = this.scrollLeft / 254;
+		var mod = row.scrollLeft % 254;
+		var num = row.scrollLeft / 254;
 		num = Math.floor(num);
 		if (mod >= 127) {
 			num++;
-			scrollAmount = 8;
+			scrollAmount = (254 * num) - row.scrollLeft;
+			dirMod = 1;
 		} else {
-			scrollAmount = -8;
+			scrollAmount = row.scrollLeft - (254 * num);
+			dirMod = -1;
 		}
-		scrollPos = (254 * num);
   } else {
   	console.log("direction error!");
   }
 
 
+	var t = new Date().getTime(); // start time
+	var b = row.scrollLeft; // start position
+	var d = 1000; // duration, in ms
 
-  var scrollStep = Math.PI / 700;
-  var cosParameter = (scrollPos - row.scrollLeft) / 2;
-  var scrollCount = 0;
-  var scrollMargin;
-  requestAnimationFrame(step);        
-  function step () {
+  // requestAnimationFrame(step);        
+  step();
+	function step() {
+		var dT = new Date().getTime() - t; // time since start
+
+		// easing functions from robert penner, http://robertpenner.com/easing/
+		// linear easing
+		// scrollPos = (scrollAmount * (dT/d))*dirMod + b;
+		// quad ease out
+		scrollPos = (-scrollAmount * (dT/d)* ((dT/d)-2))*dirMod + b;
+
 		if (dir === "right") {
-	    if ( row.scrollLeft <= scrollPos && row.scrollLeft < maxScroll) {
+	    if ( dT < d && row.scrollLeft < maxScroll) {
 	      requestAnimationFrame(step);
-	      scrollCount = scrollCount + 1;  
-	      scrollMargin = cosParameter - (cosParameter * Math.cos( scrollCount * scrollStep ));
-	      row.scrollLeft += scrollMargin;
-	      // row.scrollLeft += scrollAmount;
+	      row.scrollLeft = scrollPos;
 	    } else {
 	    	cancelAnimationFrame(step);
 	    }
 		} else if (dir === "left") {
-	    if ( row.scrollLeft > scrollPos && row.scrollLeft > 0) {
+	    if ( dT < d && row.scrollLeft > 0) {
 	      requestAnimationFrame(step);
-	      // scrollCount = scrollCount + 1;  
-	      // scrollMargin = cosParameter - cosParameter * Math.cos( scrollCount * scrollStep );
-	      // row.scrollLeft = scrollPos - scrollMargin;
-	      row.scrollLeft += scrollAmount;
+	      row.scrollLeft = scrollPos;
 	    } else {
 	    	cancelAnimationFrame(step);
 	    }
 		} else if (dir === "scroll-wrap") {
-	    if ((row.scrollLeft <= (scrollPos-12) || row.scrollLeft >= (scrollPos+12)) && row.scrollLeft < maxScroll) {
+	    if (dT < d && scrollAmount >= 12 && row.scrollLeft < maxScroll) {
 	      requestAnimationFrame(step);
-	      // scrollCount = scrollCount + 1;  
-	      // scrollMargin = cosParameter - cosParameter * Math.cos( scrollCount * scrollStep );
-	      // row.scrollLeft = scrollPos - scrollMargin;
-	      row.scrollLeft += scrollAmount;
+	      row.scrollLeft = scrollPos;
 	    } else {
 	    	cancelAnimationFrame(step);
 	    }
 		} else {
 			console.log("scrolling error!");
 		}
-  }
+	};
 }
 
 
-
 // from https://john-dugan.com/javascript-debounce/
-
 // the debounce function will return a function that stops a setTimeout method,
 // resets the timeout variable, and calls a function using the setTimeout method.
 // the debounce function will be bound to an event and called many times,
@@ -180,8 +174,8 @@ function debounce(callback, delay) {
   	// arguments is a local variable within all functions, containing
   	// an array with any parameters passed to the function
   	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
-    var self = this,
-    	  args = arguments;
+    var self = this;
+    var args = arguments;
 	  // this function will be executed using setTimeout
     var later = function() {
       // remove the id stored in the timeout variable
