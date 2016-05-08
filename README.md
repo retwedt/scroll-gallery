@@ -4,7 +4,7 @@
 
 ## Directory Structure
 
-Images from (www.pexels.com/)[https://www.pexels.com/].
+Images from [pexels.com](https://www.pexels.com/).
 
 ```
 ├── css/
