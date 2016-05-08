@@ -1,4 +1,12 @@
 /* theater.css - a lightbox clone */
+/*	Instructions:
+			You can customize the look of your lightbox using three variables:
+			- $wrap-bg-color describes the color the background fades to when the modal is active.
+			- $modal-bg-color describes the color of the modal box.
+			- $btn-prefix can be used to allow custom buttons. For example:
+					'$btn-prefix: "red";'
+				This will allow you to use custom buttons called 'red-left.png', 'red-right.png', and 'red-close.png'.
+*/
 /* Modal Styles */
 .modal-wrap {
   position: fixed;

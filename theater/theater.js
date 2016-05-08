@@ -4,9 +4,9 @@
 // Wrap everything in an iffe to restrict variable scope
 (function() {
 	// global variables
-	var newTheater;
-	var winWidth = 0;
-	var winHeight = 0;
+	var _newTheater;
+	var _winWidth = 0;
+	var _winHeight = 0;
 
 
 	/**
@@ -16,10 +16,10 @@
 	* @private
 	*/
 	var _onLoad = function() {
-		newTheater = new TheaterLightbox();
-		newTheater.buildModal();
-		newTheater.setup();
-		newTheater._getDimensions();
+		_newTheater = new TheaterLightbox();
+		_newTheater.buildModal();
+		_newTheater.setup();
+		_newTheater._getDimensions();
 	};
 
 
@@ -30,7 +30,7 @@
 	* @private
 	*/
 	var _onResize = function() {
-		newTheater._getDimensions();
+		_newTheater._getDimensions();
 	};
 
 
@@ -42,8 +42,8 @@
 	/**
 	* Create a Lightbox for displaying images, videos, and YouTube videos.
 	*
-	* @class TheaterLightbox
-	* @constructor
+	* @class
+	* @constructor TheaterLightbox
 	*/
 	function TheaterLightbox() {
 		/**
@@ -87,18 +87,18 @@
 		*/
 		this.ytHeight = 315;
 		/**
-		* @property {array} modalWrap
-		* @property {array} modal
-		* @property {array} modalRight
-		* @property {array} modalLeft
-		* @property {array} modalClose
-		* @property {array} modalContent
-		* @property {array} modalText
-		* @property {array} image
-		* @property {array} iframe
-		* @property {array} timelineWrap
-		* @property {array} bigDot
-		* @property {array} smallDot
+		* @property {element} modalWrap
+		* @property {element} modal
+		* @property {element} modalRight
+		* @property {element} modalLeft
+		* @property {element} modalClose
+		* @property {element} modalContent
+		* @property {element} modalText
+		* @property {element} image
+		* @property {element} iframe
+		* @property {element} timelineWrap
+		* @property {element} bigDot
+		* @property {element} smallDot
 		*/
 		this.modalWrap, this.modal, this.modalRight, this.modalLeft, this.modalClose, this.modalContent, this.modalText, this.image, this.iframe, this.timelineWrap, this.bigDot, this.smallDot;
 	};
@@ -195,7 +195,7 @@
 				self.currentPosterNum = self.groups[self.currentPosterGroup].indexOf(this);
 
 				// build modal using current poster info
-				self._updateModal(self.currentPosterGroup, self.currentPosterNum, "new");
+				self.updateModal(self.currentPosterGroup, self.currentPosterNum, "new");
 				// show the modal
 				self.modalWrap.setAttribute("class", "modal-wrap theater-bg-active");
 				self.modal.setAttribute("class", "modal theater-modal-active");
@@ -210,23 +210,23 @@
 			self.currentPosterGroup = "";
 			self.currentPosterNum = 0;
 			// clear contents of modal
-			self._clearModal();
+			self.clearModal();
 			self._clearTimeline();
 		});
 		this.modalRight.addEventListener("click", function() {
 			if (self.groups[self.currentPosterGroup].length>1) {
 				// clear contents of modal
-				self._clearModal();
+				self.clearModal();
 				// wait 500ms, then build modal using current poster info
-				setTimeout(function() {self._updateModal(self.currentPosterGroup, self.currentPosterNum, "right")}, 500);
+				setTimeout(function() {self.updateModal(self.currentPosterGroup, self.currentPosterNum, "right")}, 500);
 			}
 		});
 		this.modalLeft.addEventListener("click", function() {
 			if (self.groups[self.currentPosterGroup].length>1) {
 				// clear contents of modal
-				self._clearModal();
+				self.clearModal();
 				// wait 500ms, then build modal using current poster info
-				setTimeout(function() {self._updateModal(self.currentPosterGroup, self.currentPosterNum, "left")}, 500);
+				setTimeout(function() {self.updateModal(self.currentPosterGroup, self.currentPosterNum, "left")}, 500);
 			}
 		});
 	};
@@ -234,13 +234,12 @@
 	/**
 	* Update the modal box with a new image, update the timeline.
 	*
-	* @method TheaterLightbox#_updateModal
+	* @method TheaterLightbox#updateModal
 	* @param {array} [posterGroup] - the group name of the currently selected poster.
 	* @param {int} [posterNum] - the number of the currently selected poster within the group.
 	* @param {string} [dir] - direction, can be right, left, new, or timeline.
-	* @private
 	*/
-	TheaterLightbox.prototype._updateModal = function(posterGroup, posterNum, dir) {
+	TheaterLightbox.prototype.updateModal = function(posterGroup, posterNum, dir) {
 		var self = this; // reference for settimeout
 		
 		// figure out direction of modal
@@ -325,12 +324,12 @@
 		var imgRatio = this.mediaWidth / this.mediaHeight;
 
 		// calculate width based on height
-		var newHeight = (winHeight * 0.9) - 80;
+		var newHeight = (_winHeight * 0.9) - 80;
 		var newWidth = newHeight * imgRatio;
 
 		// if the width is wider than the screen, calculate ratio based on width instead
-		if ((newWidth+48) >= winWidth) {
-			newWidth = (winWidth * 0.9);
+		if ((newWidth+48) >= _winWidth) {
+			newWidth = (_winWidth * 0.9);
 			newHeight = newWidth * (1/imgRatio);
 		}
 
@@ -344,10 +343,9 @@
 	/**
 	* Clear the current media from the modal.
 	*
-	* @method TheaterLightbox#_clearModal
-	* @private
+	* @method TheaterLightbox#clearModal
 	*/
-	TheaterLightbox.prototype._clearModal = function() {
+	TheaterLightbox.prototype.clearModal = function() {
 		var self = this; // reference for settimeout
 
 		this.modal.setAttribute("class", "modal theater-modal-inactive");
@@ -400,8 +398,8 @@
 					self.timelineMarkers[self.currentPosterNum].id = "";
 					// update global current poster num
 					self.currentPosterNum = thisPosterNum;
-					self._clearModal();
-					setTimeout(function() {self._updateModal(self.currentPosterGroup, self.currentPosterNum, "timeline")}, 500);
+					self.clearModal();
+					setTimeout(function() {self.updateModal(self.currentPosterGroup, self.currentPosterNum, "timeline")}, 500);
 					// update the active timeline marker
 					self.timelineMarkers[self.currentPosterNum].id = "highlight";
 				}
@@ -447,8 +445,8 @@
 	* @private
 	*/
 	TheaterLightbox.prototype._getDimensions = function() {
-		winWidth = document.documentElement.clientWidth;
-		winHeight = document.documentElement.clientHeight
+		_winWidth = document.documentElement.clientWidth;
+		_winHeight = document.documentElement.clientHeight
 		var curMedia = this.modalContent.querySelector("img") || this.modalContent.querySelector("iframe");
 		if (curMedia) {
 			this._setModalDimesions(curMedia);
